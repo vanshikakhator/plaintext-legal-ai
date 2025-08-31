@@ -68,9 +68,23 @@ const UploadPage = () => {
   };
 
   const getRiskLevel = (score: number) => {
-    if (score < 30) return "Low Risk";
-    if (score < 70) return "Medium Risk";
-    return "High Risk";
+    if (score < 30) return "Low";
+    if (score < 70) return "Moderate";
+    return "High";
+  };
+
+  const getFairnessLevel = (score: number) => {
+    if (score >= 80) return "Excellent";
+    if (score >= 60) return "Good";
+    if (score >= 40) return "Fair";
+    return "Poor";
+  };
+
+  const getFairnessColor = (score: number) => {
+    if (score >= 80) return "text-green-600";
+    if (score >= 60) return "text-blue-600";
+    if (score >= 40) return "text-yellow-600";
+    return "text-red-600";
   };
 
   return (
@@ -219,13 +233,13 @@ const UploadPage = () => {
                     </div>
                     
                     <div className="text-center p-6 bg-gradient-card rounded-lg">
-                      <CheckCircle className="mx-auto h-12 w-12 mb-4 text-green-600" />
+                      <CheckCircle className={`mx-auto h-12 w-12 mb-4 ${getFairnessColor(fairnessScore)}`} />
                       <h3 className="text-2xl font-bold text-foreground mb-2">Fairness Score</h3>
-                      <p className="text-3xl font-bold text-green-600">
+                      <p className={`text-3xl font-bold ${getFairnessColor(fairnessScore)}`}>
                         {fairnessScore}%
                       </p>
-                      <p className="text-sm font-medium text-green-600">
-                        Fair Agreement
+                      <p className={`text-sm font-medium ${getFairnessColor(fairnessScore)}`}>
+                        {getFairnessLevel(fairnessScore)} Agreement
                       </p>
                     </div>
                   </div>
