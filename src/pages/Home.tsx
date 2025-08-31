@@ -32,14 +32,7 @@ const Home = () => {
   ];
 
   const handleFeatureClick = (path: string) => {
-    // Check if user is authenticated (placeholder for now)
-    const isAuthenticated = false; // This would come from your auth system
-    
-    if (!isAuthenticated) {
-      navigate('/login');
-    } else {
-      navigate(path);
-    }
+    navigate(path);
   };
 
   return (
